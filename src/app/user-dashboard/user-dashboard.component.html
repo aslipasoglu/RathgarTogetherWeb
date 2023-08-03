@@ -1,0 +1,11 @@
+<div style="padding: 50px; width: 70%;">
+    <div *ngFor="let group of hobbyGroups" class="box">
+        <h3>Name: {{group.name}}</h3>
+        <p>Spacility: {{group.speciality}}</p>
+        <p>Owner: {{group.owner.name}} {{group.owner.surname}} - Email : {{group.owner.email}}</p>
+        <div><nz-tag [nzColor]="'#87d068'" *ngFor="let member of group.members">{{member.name}} {{member.surname}}</nz-tag></div>
+
+        <button nz-button nzType="primary" style="float: right;" (click)="joinHobbyGroup(group.id)">Join Hobby Group</button>
+    </div>
+
+</div>

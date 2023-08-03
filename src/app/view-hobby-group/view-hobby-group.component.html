@@ -1,0 +1,48 @@
+<div nz-row style="padding: 30px;">
+    <div nz-col nzSpan="15" style="padding: 10px;">
+        <div *ngIf="hobbyGroup" class="box">
+            <h3>Name: {{hobbyGroup.name}}</h3>
+            <p>Spacility: {{hobbyGroup.speciality}}</p>
+            <p>Owner: {{hobbyGroup.owner.name}} {{hobbyGroup.owner.surname}} - Email : {{hobbyGroup.owner.email}}</p>
+            <div><nz-tag [nzColor]="'#87d068'" *ngFor="let member of hobbyGroup.members">{{member.name}}
+                    {{member.surname}}</nz-tag></div>
+
+        </div>
+
+        <div>
+            <nz-divider nzText="Discussion" nzOrientation="left"></nz-divider>
+            <div nz-row style="margin-top: 10px;">
+                <textarea rows="4" nz-input [(ngModel)]="inputValue"></textarea>
+                <button nz-button nzType="primary" (click)="addComment()"
+                    style="float: right !important; margin-top: 10px;">Add Comment</button>
+
+            </div>
+            <div *ngFor="let comment of  comments"
+                [ngClass]="{'commentBoxBlue': comment.user.id === loggedInUserId, 'commentBoxPink': comment.user.id !== loggedInUserId}">
+                <h5 class="comment">{{comment.body}} <span class="commentDate">
+                        <nz-divider class="commentDate" nzType="vertical"></nz-divider><span
+                            class="details">{{comment.user.name}} {{comment.user.surname}} -
+                            {{comment.createdDate | date:'MMM d, y, h:mm:ss a'}}</span>
+                    </span></h5>
+            </div>
+        </div>
+    </div>
+    <div nz-col nzSpan="9" style="padding: 10px;">
+        <button *ngIf="loggedInUserId == hobbyGroup?.owner.id" routerLink="/create-event/{{id}}" nz-button
+            nzType="primary" style="float: right;">Create Event</button>
+        <h4>UpComming Events</h4>
+        <div class="boxBlue" *ngIf="eventList?.length === 0">
+            <h4>No UpComming Events</h4>
+        </div>
+        <div *ngFor="let event of eventList" class="boxBlue">
+            <h3>{{event.title}}</h3>
+            <p>{{event.body}}</p>
+            <p>{{event.date | date:'MMM d, y, h:mm:ss a'}}</p>
+            <div *ngIf="event.members.length > 0">Coming : <nz-tag [nzColor]="'#87d068'" *ngFor="let member of event.members">{{member.name}}
+                    {{member.surname}}</nz-tag></div>
+            <button  nz-button (click)="joinEvent(event.id)"
+                    nzType="primary" style="float: right;">Going</button>
+
+        </div>
+    </div>
+</div>

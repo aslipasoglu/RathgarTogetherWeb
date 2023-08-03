@@ -1,0 +1,24 @@
+<div class="bg" style="background-color: #F8F8F8;">
+    <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+        <div class="parent">
+            <div class="child">
+               
+                <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+
+                    <nz-form-item>
+                        <nz-form-control nzHasFeedback nzErrorTip="The input is not name">
+                            <input nz-input placeholder="Name" formControlName="name"  />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-control nzHasFeedback nzErrorTip="The input is not speciality">
+                            <input nz-input placeholder="Speciality" formControlName="speciality"  />
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Create Hobby Group</button>
+                </form>
+            </div>
+        </div>
+    </nz-spin>
+</div>

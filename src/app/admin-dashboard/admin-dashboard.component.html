@@ -1,0 +1,22 @@
+<div style="padding: 30px;">
+    <nz-table #basicTable [nzData]="users">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable.data">
+            <td>{{data.name}} {{data.surname}}</td>
+            <td>{{data.email}}</td>
+            <td>{{data.phone}}</td>
+            <td>
+                <button (click)="deleteUser(data.id)" nz-button nzType="default" nzShape="circle"><span nz-icon nzType="delete"></span></button>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+</div>
